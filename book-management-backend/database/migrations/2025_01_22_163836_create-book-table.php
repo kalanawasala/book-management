@@ -13,11 +13,14 @@ class CreateBookTable extends Migration
      */
     public function up()
     {
-        Schema::create('flights', function (Blueprint $table) {
+        Schema::create('book', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('airline');
-            $table->timestamps();
+            $table->string('author');
+            $table->integer('edition');
+            $table->text('description');
+            $table->decimal('price');
+            $table->date('created_at');
         });
     }
 
