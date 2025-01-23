@@ -24,7 +24,7 @@
                     <input type="text" placeholder="Enter Book Edition">   
                 </div>
                 <div>
-                    <label for="description">Book Desvription</label><br>
+                    <label for="description">Book Description</label><br>
                     <input type="text" placeholder="Enter Book Description">   
                 </div>
                 <div>
