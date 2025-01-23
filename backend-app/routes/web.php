@@ -20,4 +20,6 @@ Route::get('/', function () {
 // create route for book via contoller
 Route::get('/book',[BookController::class,'index'])->name('book.index');
 
-Route::get('/register',[BookController::class,'register'])->name('book.register');
+Route::get('/book/register',[BookController::class,'register'])->name('book.register');
+
+Route::post('/book',[BookController::class,'store'])->name('book.store');

@@ -12,4 +12,8 @@ class BookController extends Controller
     public function register() {
         return view('book.register');
     }
+
+    public function store(Request $request) {
+        dd($request->name);
+    }
 }

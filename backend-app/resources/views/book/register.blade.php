@@ -8,7 +8,9 @@
 </head>
 <body>
     <div>
-        <form action="" method="post">
+        <form method="post" action={{ route('book.store') }} >
+            @csrf
+            @method('post')
             <fieldset>
                 <legend>Book Register :</legend>
                 <div>
