@@ -12,6 +12,7 @@ class book extends Model
     "author".
     "edition".
     "description".
-    "price"
+    "price".
+    "created_at"
     ];
 }
