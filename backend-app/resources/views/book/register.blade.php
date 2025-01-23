@@ -10,32 +10,32 @@
     <div>
         <form method="post" action={{ route('book.store') }} >
             @csrf
-            @method('post')
+            @method("post")
             <fieldset>
                 <legend>Book Register :</legend>
                 <div>
                     <label for="name">Book Name</label><br>
-                    <input type="text" placeholder="Enter Book Name">   
+                    <input type="text" name="bookname" placeholder="Enter Book Name">   
                 </div>
                 <div>
                     <label for="author"> Author</label><br>
-                    <input type="text" placeholder="Enter Book Author">   
+                    <input type="text" name="author" placeholder="Enter Book Author">   
                 </div>
                 <div>
                     <label for="edition">Book Edition</label><br>
-                    <input type="text" placeholder="Enter Book Edition">   
+                    <input type="text" name="edition" placeholder="Enter Book Edition">   
                 </div>
                 <div>
                     <label for="description">Book Description</label><br>
-                    <input type="text" placeholder="Enter Book Description">   
+                    <input type="text" name="description"placeholder="Enter Book Description">   
                 </div>
                 <div>
                     <label for="name">Book Price</label><br>
-                    <input type="text" placeholder="Enter Book Price">   
+                    <input type="text" name="price"placeholder="Enter Book Price">   
                 </div>
                 <div>
                     <label for="date">Date Of Publish</label><br>
-                    <input type="text" placeholder="Enter Book Publish Date">   
+                    <input type="text" name="date" placeholder="Enter Book Publish Date">   
                 </div>
                 <div>
                     <br>
