@@ -1,9 +1,10 @@
+<!DOCTYPE html>
 <html>
     <head>
 
     </head>
     <body>
-        <p>this is view</p>
+        <h1>This is The view For Book</h1>
         <div>index</div>
     </body>
 </html>
