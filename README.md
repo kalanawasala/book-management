@@ -4,7 +4,7 @@
     is to handle the book managemnt events smoothly .
 
 <h1>How to install</h1>
-<h2>STEP-01</h2> You Should have installed the all of necessary softwres on your pc 
+<h2>STEP-01</h2> You Should have installed the all of necessary softwares on your pc 
     
     php server
     Git
