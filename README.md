@@ -3,6 +3,7 @@
 <h2>how to Cloning this repository to your Local Environment <h2>
 <ol>
 <li>On GitHub, navigate to the main page of the repository.
+<href=https://docs.github.com/assets/cb-13128/mw-1440/images/help/repository/code-button.webp>
 Above the list of files, click Code.
 <li>
 Screenshot of the list of files on the landing page of a repository. The "Code" button is highlighted with a dark orange outline.
