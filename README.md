@@ -1,10 +1,10 @@
 <h1>This is a web app for Book Management System</h1>
 
-<h2>Cloning a repository<h2>
-On GitHub, navigate to the main page of the repository.
-
+<h2>how to Cloning this repository to your Local Environment <h2>
+<ol>
+<li>On GitHub, navigate to the main page of the repository.
 Above the list of files, click Code.
-
+<li>
 Screenshot of the list of files on the landing page of a repository. The "Code" button is highlighted with a dark orange outline.
 Copy the URL for the repository.
 
@@ -31,3 +31,5 @@ $ git clone https://github.com/YOUR-USERNAME/YOUR-REPOSITORY
 > remote: Compressing objects: 100% (8/8), done.
 > remove: Total 10 (delta 1), reused 10 (delta 1)
 > Unpacking objects: 100% (10/10), done.
+
+</ol>
