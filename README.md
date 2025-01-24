@@ -3,14 +3,14 @@
     This is the my first project that developed using laravel framework.The purpose of the application 
     is to handle the book managemnt events smoothly .
 
-<h1>How to install</h1>
+<h2>How to install</h1>
 <h2>STEP-01</h2> You Should have installed the all of necessary softwares on your pc 
     
     php server
     Git
     composer
-<h2>STEP-02</h2> clone the git repository to the location machine that you need to store the application.
-open your terminal there and Use the git clone a command.
+<h2>STEP-02</h2> clone the git repository to the location on your machine that you need to store the application.
+go to that location and open your terminal there and run the git clone command.
     
     git clone <repository url>.git
 <h2>STEP-03</h2> Move into the application directory using the cd command: 
