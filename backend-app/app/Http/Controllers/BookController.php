@@ -36,9 +36,12 @@ class BookController extends Controller
 
         //return to home directory
         return redirect(\route('book.index'))->with('success','');
+     }
 
-        
-
-
+     
+     public function edit(book $book) {
+        //dd($book);
+        return view('book.edit',compact('book'));
+            
      }
 }

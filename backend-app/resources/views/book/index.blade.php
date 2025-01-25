@@ -15,6 +15,7 @@
                     <th>DESCRIPTION</th>
                     <th>PRICE</th>
                     <th>DATE OF PUBLISHED</th>
+                    <th>EDIT</th>
                 </tr>
                 <@foreach($books as $book)
                     <tr>
@@ -25,6 +26,7 @@
                         <td>{{$book->description}}</td>
                         <td>{{$book->price}}</td>
                         <td>{{$book->created_at}}</td>
+                        <td><a href="{{route('book.edit',$book)}}">EDIT</a></td>
                     </tr>
                 @endforeach
             </table>
