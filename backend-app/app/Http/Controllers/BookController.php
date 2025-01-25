@@ -35,7 +35,7 @@ class BookController extends Controller
         $newbook = book::create($validatedData);
 
         //return to home directory
-        return redirect(\route('book.index'))->with('success','');
+        return redirect(route('book.index'))->with('success','');
      }
 
      
