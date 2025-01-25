@@ -8,7 +8,10 @@ use illuminate\view\Middleware\ShareErrorsFromSession;
 class BookController extends Controller
 {
     public function index(){
-        return view('book.index');
+        //get data from database
+        $books = Book::all();
+       // return to view with data using compact
+        return view ('book.index',compact('books'));
     }
     public function register() {
         return view('book.register');

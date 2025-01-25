@@ -9,6 +9,7 @@
 <body>
     <div>
         <div>
+            <!-- to  get the errors of inpult filed if form validation failed-->
             @if ($errors->any())
             <ul>    
                 @foreach ($errors->all() as $error)
