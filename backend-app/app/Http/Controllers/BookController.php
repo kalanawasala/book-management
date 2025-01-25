@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use Validator;
 use Illuminate\Http\Request;
 use App\book;
+use illuminate\view\Middleware\ShareErrorsFromSession;
 class BookController extends Controller
 {
     public function index(){
