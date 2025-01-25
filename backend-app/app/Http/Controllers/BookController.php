@@ -16,6 +16,7 @@ class BookController extends Controller
     public function store(Request $request) {
         //route data to view
         //dd($request->all());
+        // Passing the validated user input to DB
         $validatedData = $request->validate([
             'name'=>'bail|required|string',
             'author'=>'required|string',
@@ -29,6 +30,7 @@ class BookController extends Controller
         /*$data = ($request->all());*/
         $newbook = book::create($validatedData);
 
+        //return to home directory
         return redirect(\route('book.index'))->with('success','');
 
         
