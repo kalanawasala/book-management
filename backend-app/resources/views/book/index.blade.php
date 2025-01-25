@@ -6,6 +6,9 @@
     <body>
         <h1>This is The view For Book</h1>
         <div>
+            <a href="{{route('book.register')}}">Register New Book</a>
+        </div>
+        <div>
             @if(session()->has('success'))
             <div>
                 {{session('success')}}
@@ -35,7 +38,9 @@
                         <td>{{$book->created_at}}</td>
                         <td><a href="{{route('book.edit',$book)}}">EDIT</a></td>
                         <td>
-                            <form action="">
+                            <form method="post" action="{{route('book.destroy',['book'=>$book])}}">
+                                @csrf
+                                @method('delete')
                                 <input type="submit" value="DELETE"/>
                             </form>
                         </td>
