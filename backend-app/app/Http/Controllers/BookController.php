@@ -44,6 +44,7 @@ class BookController extends Controller
         return view('book.edit',['book'=>$book]);
             
      }
+     //Get values from update and validate them and send to model and database
      public function update(Request $request,book $book) {
         $validatedData = $request->validate([
             'name'=>'bail|required|string',
@@ -58,7 +59,7 @@ class BookController extends Controller
 
         return redirect(route('book.index'))->with('success','book update successfully');
      }
-
+     //Delete book from book register
      public function destroy(book $book) {
         $book->delete();
 
