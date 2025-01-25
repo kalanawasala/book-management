@@ -41,7 +41,22 @@ class BookController extends Controller
      
      public function edit(book $book) {
         //dd($book);
-        return view('book.edit',compact('book'));
+        return view('book.edit',['book'=>$book]);
             
      }
+     public function update(Request $request,book $book) {
+        $validatedData = $request->validate([
+            'name'=>'bail|required|string',
+            'author'=>'required|string',
+            'edition'=>'required|numeric',
+            'description'=>'nullable',
+            'price'=>'required|numeric',
+            'created_at'=>'nullable',
+
+        ]);
+        $book->update($validatedData); 
+
+        return redirect(route('book.index'))->with('success','book update successfully');
+     }
+
 }

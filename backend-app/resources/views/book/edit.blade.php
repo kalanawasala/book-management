@@ -22,12 +22,10 @@
             @endif
 
         </div>
-    </div>
-        
     <div>
-        <form method="post" action="" >
+        <form method="post" action="{{route('book.update',['book'=>$book])}}" >
             @csrf
-            @method("post")
+            @method("put")
             <fieldset>
                 <legend>Book Register :</legend>
                 <div>

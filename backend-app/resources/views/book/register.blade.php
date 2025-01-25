@@ -22,6 +22,7 @@
             @endif
 
         </div>
+        
 
 
         <form method="post" action={{ route('book.store') }} >
