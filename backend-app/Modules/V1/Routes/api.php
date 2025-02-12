@@ -1,6 +1,9 @@
 <?php
 
-use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Request;
+use Modules\V1\Http\Controllers\BookController;
+use Modules\V1\Http\Requests\Book\UpdateBookRequest;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,4 +27,7 @@ Route::group([
 
     Route::get('/book', 'BookController@listBooks');
     Route::post('/book', 'BookController@createBook');
+    Route::put('/book/{id}','BookController@updateBook');
+    Route::delete('/book/{id}','BookController@deleteBook');
+    
 });

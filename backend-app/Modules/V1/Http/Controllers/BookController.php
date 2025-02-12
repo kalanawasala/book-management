@@ -2,13 +2,16 @@
 
 namespace Modules\V1\Http\Controllers;
 
-use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
+use PhpParser\Node\Stmt\Catch_;
+
 use Illuminate\Routing\Controller;
 
+use Illuminate\Support\Facades\Validator;
 use Modules\V1\Repositories\BookRepository;
-
+use Illuminate\Contracts\Support\Renderable;
 use Modules\V1\Http\Requests\Book\CreateBookRequest;
+use Modules\V1\Http\Requests\Book\UpdateBookRequest;
 
 class BookController extends Controller
 {
@@ -52,4 +55,36 @@ class BookController extends Controller
             ], 500);
         }
     }
+    public function updateBook(UpdateBookRequest $request, $id) {
+        try {
+            $this->bookRepository->updateBook($request->title,$id);
+                return response()->json([
+                    'success' => true, 
+                    'message'=> 'Book update successfully'
+                ], 200); 
+
+            }catch(\Exception $e){
+                return response()->json([
+                    'success' => false, 
+                    'error'=> ['Error occurred while creating book']
+                ], 500);
+            }
+        }
+
+    public function deleteBook($id) {
+        try {
+            $books = $this->bookRepository->deleteBook($id);
+                return response()->json([
+                    'success' => true, 
+                    'message'=> 'Books Deleted successfully',
+                    'data' => $books
+                ], 200); 
+            } catch (\Exception $e) {
+    
+                return response()->json([
+                    'success' => false, 
+                    'error'=> ['Error occurred while list books.']
+                ], 500);
+            }
+        }
 }

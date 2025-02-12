@@ -24,4 +24,10 @@ class BookRepository extends BaseRepository {
                     ->orderBy('created_at', 'DESC')
                     ->get();
     }
+    public function updateBook($title,$id){
+        DB::table('books')->where('id', $id)->update(['title'=>$title]);
+    }
+    public function deleteBook($id) {
+        DB::table('books')->where('id', $id)->delete();
+    }
 }

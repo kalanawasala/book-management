@@ -14,7 +14,7 @@ class V1DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        Model::unguard();
+        Model::unguarded($this);
 
         // $this->call("OthersTableSeeder");
     }

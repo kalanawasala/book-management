@@ -9,14 +9,15 @@
     ],
     "extra": {
         "laravel": {
-            "providers": ["Modules\\V1\\Providers\\V1ServiceProvider"],
-            "aliases": {
-
-            }
+            "providers": [
+                "Modules\\V1\\Providers\\V1ServiceProvider"
+            ],
+            "aliases": {}
         }
     },
     "autoload": {
         "psr-4": {
+            "App\\": "app/",
             "Modules\\V1\\": ""
         }
     }
