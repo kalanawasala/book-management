@@ -25,8 +25,8 @@ Route::group([
     'prefix' => 'v1'
 ], function ($router) {
 
-    Route::get('/book', 'BookController@listBooks');
-    Route::post('/book', 'BookController@createBook');
+    Route::get('/book', 'BookController@listBooks')->middleware("cors");
+    Route::post('/book', 'BookController@createBook')->middleware("cors");
     Route::put('/book/{id}','BookController@updateBook');
     Route::delete('/book/{id}','BookController@deleteBook');
     
