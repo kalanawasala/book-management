@@ -1,13 +1,16 @@
 <?php
+
 namespace Modules\V1\Repositories;
 
 use Prettus\Repository\Eloquent\BaseRepository;
-use DB;
+use Illuminate\Support\Facades\DB;
 
 
-class BookRepository extends BaseRepository {
+class BookRepository extends BaseRepository
+{
 
-    function model() {
+    function model()
+    {
         return "Modules\\V1\\Entities\\Book";
     }
 
@@ -18,16 +21,19 @@ class BookRepository extends BaseRepository {
         DB::table('books')->insert(['title' => $title]);
     }
 
-    public function listBooks() {
+    public function listBooks()
+    {
         return DB::table('books')
-                    ->select(['id', 'title'])
-                    ->orderBy('created_at', 'DESC')
-                    ->get();
+            ->select(['id', 'title'])
+            ->orderBy('created_at', 'DESC')
+            ->get();
     }
-    public function updateBook($title,$id){
-        DB::table('books')->where('id', $id)->update(['title'=>$title]);
+    public function updateBook($title, $id)
+    {
+        DB::table('books')->where('id', $id)->update(['title' => $title]);
     }
-    public function deleteBook($id) {
+    public function deleteBook($id)
+    {
         DB::table('books')->where('id', $id)->delete();
     }
 }
