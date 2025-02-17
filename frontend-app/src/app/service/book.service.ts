@@ -1,31 +1,25 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable, of, throwError, NEVER } from 'rxjs';
-import { catchError, map, retry } from 'rxjs/operators';
-import { Book } from '../assets/book';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { Data } from '@angular/router';
+
+import { IHttpResponse } from '../shared/interfaces/http-response.interface';
+import { TCreateBookProps } from '../shared/types/create-book-props.type';
+import { IListBooksResponse } from '../shared/interfaces/list-book-response.interface';
 
 @Injectable({
   providedIn: 'root',
 })
 export class BookService {
-  book = new Observable<Book>();
+  book = new Observable<any>();
   apiUrl: any;
 
   constructor(private http: HttpClient) {
     this.apiUrl = environment.apiUrl;
   }
-  getAllBooks(): Observable<{
-    success: boolean;
-    message: string;
-    data: Array<{ id: number; title: string }>;
-  }> {
-    return this.http.get<{
-      success: boolean;
-      message: string;
-      data: Array<{ id: number; title: string }>;
-    }>(`${this.apiUrl}/book`);
+
+  getAllBooks(): Observable<IListBooksResponse> {
+    return this.http.get<IListBooksResponse>(`${this.apiUrl}/book`);
   }
 
   getBook(id: number): Observable<{
@@ -40,17 +34,8 @@ export class BookService {
     }>(`${this.apiUrl}/book/${id}`);
   }
 
-  addBooks(book: Book): Observable<{
-    success: boolean;
-    message: string;
-    data: Array<{ id: number; title: string }>;
-  }> {
-    // const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-    return this.http.post<{
-      success: boolean;
-      message: string;
-      data: Array<{ id: number; title: string }>;
-    }>(`${this.apiUrl}/book`, book);
+  addBooks(props: TCreateBookProps): Observable<IHttpResponse> {
+    return this.http.post<IHttpResponse>(`${this.apiUrl}/book`, props);
   }
 
   updateBook(

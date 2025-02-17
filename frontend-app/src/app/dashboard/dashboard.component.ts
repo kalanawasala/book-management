@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { BookService } from '../service/book.service';
-import { Book } from '../assets/book';
+import { HttpErrorResponse } from '@angular/common/http';
+import { IBook } from '../shared/interfaces/book.interface';
 
 @Component({
   selector: 'app-dashboard',
@@ -8,21 +9,26 @@ import { Book } from '../assets/book';
   styleUrls: ['./dashboard.component.css'],
 })
 export class DashboardComponent {
-  allBook: Array<{ id: number; title: string }> = [];
+  allBook: IBook[];
 
-  constructor(private bookService: BookService) {}
+  constructor(private bookService: BookService) {
+    this.allBook = [];
+  }
 
   ngOnInit(): void {
     this.getBooks();
   }
 
   public getBooks() {
-    try {
-      this.bookService.getAllBooks().subscribe((response) => {
-        this.allBook = response.data.slice(1, 5);
-      });
-    } catch (e) {
-      console.log('error is', e);
-    }
+    this.bookService.getAllBooks().subscribe({
+      next: (response) => {
+        if (response.success && response.data) {
+          this.allBook = response.data;
+        }
+      },
+      error: (error: HttpErrorResponse) => {
+        console.log(error);
+      },
+    });
   }
 }
