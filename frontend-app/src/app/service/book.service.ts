@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable, of, throwError } from 'rxjs';
+import { Observable, of, throwError, NEVER } from 'rxjs';
 import { catchError, map, retry } from 'rxjs/operators';
 import { Book } from '../assets/book';
 import { environment } from 'src/environments/environment';
@@ -10,6 +10,7 @@ import { Data } from '@angular/router';
   providedIn: 'root',
 })
 export class BookService {
+  book = new Observable<Book>();
   apiUrl: any;
 
   constructor(private http: HttpClient) {
@@ -67,8 +68,16 @@ export class BookService {
     }>(`${this.apiUrl}/book/${id}}`, book);
   }
 
-  deleteBooks(bookId: number): Observable<any> {
-    return this.http.delete<any>(`${this.apiUrl}/book/${bookId}`);
+  deleteBooks(bookId: number): Observable<{
+    success: boolean;
+    message: string;
+    data: Array<{ id: number; title: string }>;
+  }> {
+    return this.http.delete<{
+      success: boolean;
+      message: string;
+      data: Array<{ id: number; title: string }>;
+    }>(`${this.apiUrl}/book/${bookId}`);
   }
 
   searchedBook(term: string): Observable<{
@@ -77,9 +86,13 @@ export class BookService {
     data: Array<{ id: number; title: string }>;
   }> {
     if (!term.trim()) {
-      // if not search term, return empty book
-      return of(<any>[]);
+      // if not search term, return empty hero array.
+      return <any>[];
     }
-    return this.http.get<any>(`${this.apiUrl}/book/?title=${term}`);
+    return this.http.get<{
+      success: boolean;
+      message: string;
+      data: Array<{ id: number; title: string }>;
+    }>(`${this.apiUrl}/book`);
   }
 }

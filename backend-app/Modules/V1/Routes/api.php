@@ -27,7 +27,6 @@ Route::group([
 
     Route::get('/book', 'BookController@listBooks')->middleware("cors");
     Route::get('/book/{id}', 'BookController@listBook')->middleware("cors");
-    Route::get('/book/{title}', 'BookController@searchedBook')->middleware("cors");
     Route::post('/book', 'BookController@createBook')->middleware("cors");
     Route::put('/book/{id}', 'BookController@updateBook')->middleware("cors");;
     Route::delete('/book/{id}', 'BookController@deleteBook')->middleware("cors");;

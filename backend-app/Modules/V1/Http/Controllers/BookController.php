@@ -110,22 +110,4 @@ class BookController extends Controller
             ], 500);
         }
     }
-
-    // public function searchBook(Request $request)
-    // {
-    //     $books = $this->bookRepository->searchBook($request->title);
-    //     try {
-    //         return response()->json([
-    //             'success' => true,
-    //             'message' => 'Books Searching successfully',
-    //             'data' => $books
-    //         ], 200);
-    //     } catch (\Exception $e) {
-
-    //         return response()->json([
-    //             'success' => false,
-    //             'error' => ['Error occurred while list books.']
-    //         ], 500);
-    //     }
-    // }
 }

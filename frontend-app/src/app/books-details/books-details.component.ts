@@ -2,7 +2,7 @@ import { Component, Input } from '@angular/core';
 import { Book } from '../assets/book';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
-import { BookService } from '../served/book.service';
+import { BookService } from '../service/book.service';
 
 @Component({
   selector: 'app-books-details',
