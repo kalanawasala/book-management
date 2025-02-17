@@ -6,12 +6,21 @@
     <title>Document</title>
   </head>
   <body>
-    <div *ngIf="book">
-      <h2>{{ book.title | uppercase }} Details</h2>
-      <div><span>id: </span>{{ book.id }}</div>
-      <div>
-        <label for="hero-name">Book name: </label>
-        <input id="hero-name" [(ngModel)]="book.title" placeholder="name" />
+    <div class="container" *ngFor="let book of books">
+      <h2>Details Of {{ book.title | uppercase }}</h2>
+      <div class="item">
+        <label for="book-id">Book name: </label>
+        <input id="book-id" [(ngModel)]="book.id" placeholder="name" />
+      </div>
+
+      <div class="item">
+        <label for="book-name">Book name: </label>
+        <input id="book-name" [(ngModel)]="book.title" placeholder="name" />
+      </div>
+      <div class="item">
+        <button type="button" (click)="goBack()">Go back</button>
+        <button type="button" (click)="save(book)">Save</button>
+        <button type="button" (click)="delete()" value="">Delete</button>
       </div>
     </div>
   </body>

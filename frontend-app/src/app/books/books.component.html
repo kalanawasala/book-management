@@ -6,36 +6,35 @@
     <title>Document</title>
   </head>
   <body>
-    <div>
-      <label for="new-book">Book Title: </label>
-      <input id="new-book" #BookTitle />
+    <div class="container">
+      <div class="item">
+        <label for="new-book">Book Title: </label>
+        <input id="new-book" #BookTitle />
 
-      <!-- (click) passes input value to add() and then clears the input -->
-      <button
-        type="button"
-        class="add-button"
-        (click)="addBooks(BookTitle.value); BookTitle.value = ''"
-      >
-        Add Book
-      </button>
-    </div>
-    <!-- <ul>
+        <!-- (click) passes input value to add() and then clears the input -->
+        <button
+          type="button"
+          class="add-button"
+          (click)="addBooks(BookTitle.value); BookTitle.value = ''"
+        >
+          Add Book
+        </button>
+      </div>
+      <!-- <ul>
   <li *ngIf="allBook">{{ allBook.data | json }}</li>
 </ul> -->
-    <div class="books-menu">
-      <ul class="books">
-        <li *ngFor="let book of allBook">
-          <button
-            type="button"
-            [class.selected]="book === selectedBook"
-            (click)="onSelect(book)"
-          >
-            <span class="badge">{{ book.id }}</span>
-            <span class="name">{{ book.title | uppercase }}</span>
-          </button>
-        </li>
-      </ul>
-      <app-books-details [book]="selectedBook"></app-books-details>
+      <div class="item">
+        <ul class="books">
+          <li *ngFor="let book of allBook">
+            <a routerLink="/details/{{ book.id }}">
+              <button type="button">
+                <span class="badge">{{ book.id }}</span>
+                <span class="name">{{ book.title | uppercase }}</span>
+              </button>
+            </a>
+          </li>
+        </ul>
+      </div>
     </div>
   </body>
 </html>

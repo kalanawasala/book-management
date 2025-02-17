@@ -10,8 +10,7 @@ class UpdateBookRequest extends FormRequest
     public function rules()
     {
         return [
-            'id' => 'required',
-            "title"=> "required|string",
+            "title" => "required|string",
         ];
     }
 
@@ -19,7 +18,7 @@ class UpdateBookRequest extends FormRequest
     {
         return true;
     }
-    
+
     public function withValidator($validator)
     {
         $validator->after(function ($validator) {

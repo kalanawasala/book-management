@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { BookService } from '../book.service';
-import { Book } from '../book';
+import { BookService } from '../served/book.service';
+import { Book } from '../assets/book';
 import { tick } from '@angular/core/testing';
 
 @Component({
@@ -12,16 +12,10 @@ export class BooksComponent implements OnInit {
   //make as object
   allBook: Array<{ id: number; title: string }> = [];
 
-  selectedBook?: any;
-
   constructor(private bookService: BookService) {}
 
   ngOnInit() {
     this.getBooks();
-  }
-
-  onSelect(book: any): void {
-    this.selectedBook = book;
   }
 
   public getBooks() {
@@ -34,7 +28,7 @@ export class BooksComponent implements OnInit {
     }
   }
 
-  public addBooks(title: any): void {
+  public addBooks(title: string): void {
     // this.bookService.addBooks(this.allBook).subscribe((response) => {
     //   console.log('User created:', response);
     //   this.getBooks();
