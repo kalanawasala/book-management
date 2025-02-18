@@ -11,7 +11,6 @@ import { IListBooksResponse } from '../shared/interfaces/list-book-response.inte
   providedIn: 'root',
 })
 export class BookService {
-  book = new Observable<any>();
   apiUrl: any;
 
   constructor(private http: HttpClient) {

@@ -28,14 +28,6 @@ class BookRepository extends BaseRepository
             ->orderBy('created_at', 'DESC')
             ->get();
     }
-    public function searchedBook($keyword)
-    {
-        return DB::table('books')
-            ->select(['id', 'title'])
-            ->where('title', 'like', '%' . $keyword . '%')
-            ->orderBy('created_at', 'DESC')
-            ->get();
-    }
     public function listBook($id)
     {
         return DB::table('books')
