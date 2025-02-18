@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="form-container">
+      <h2>Login</h2>
+
+      <form
+        #loginForm="ngForm"
+        (ngSubmit)="login()"
+        class="login-form"
+        style="border: 1px solid #ccc"
+      >
+        <div class="form-field">
+          <label for="email">E-mail</label>
+          <input
+            type="text"
+            class="form-control"
+            id="email"
+            name="email"
+            placeholder="email"
+            [(ngModel)]="form.email"
+            required
+          />
+        </div>
+        <div class="form-field">
+          <label for="password">Password</label>
+          <input
+            type="password"
+            class="form-control"
+            id="password"
+            name="password"
+            placeholder="password"
+            [(ngModel)]="form.password"
+            required
+          />
+        </div>
+        <div class="form-button">
+          <button type="submit" [disabled]="!loginForm.valid">Login</button>
+        </div>
+      </form>
+    </div>
+  </body>
+</html>

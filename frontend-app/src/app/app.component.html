@@ -7,11 +7,9 @@
   </head>
   <body>
     <h1>{{ title }}</h1>
-    <nav class="main-menu">
-      <a routerLink="/books">View All Books</a>
-      <a routerLink="/dashboard">Dash Board</a>
-    </nav>
-
-    <router-outlet></router-outlet>
+    <app-navbar></app-navbar>
+    <div class="container">
+      <router-outlet></router-outlet>
+    </div>
   </body>
 </html>

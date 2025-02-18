@@ -11,7 +11,6 @@ import { IListBooksResponse } from '../shared/interfaces/list-book-response.inte
   providedIn: 'root',
 })
 export class BookService {
-  book = new Observable<any>();
   apiUrl: any;
 
   constructor(private http: HttpClient) {
@@ -22,62 +21,24 @@ export class BookService {
     return this.http.get<IListBooksResponse>(`${this.apiUrl}/book`);
   }
 
-  getBook(id: number): Observable<{
-    success: boolean;
-    message: string;
-    data: Array<{ id: number; title: string }>;
-  }> {
-    return this.http.get<{
-      success: boolean;
-      message: string;
-      data: Array<{ id: number; title: string }>;
-    }>(`${this.apiUrl}/book/${id}`);
+  getBook(id: number): Observable<IListBooksResponse> {
+    return this.http.get<IListBooksResponse>(`${this.apiUrl}/book/${id}`);
   }
 
   addBooks(props: TCreateBookProps): Observable<IHttpResponse> {
     return this.http.post<IHttpResponse>(`${this.apiUrl}/book`, props);
   }
 
-  updateBook(
-    id: number,
-    book: object
-  ): Observable<{
-    success: boolean;
-    message: string;
-    data: Array<{ id: number; title: string }>;
-  }> {
-    return this.http.put<{
-      success: boolean;
-      message: string;
-      data: Array<{ id: number; title: string }>;
-    }>(`${this.apiUrl}/book/${id}}`, book);
+  updateBook(id: number, book: object): Observable<IListBooksResponse> {
+    return this.http.put<IListBooksResponse>(
+      `${this.apiUrl}/book/${id}}`,
+      book
+    );
   }
 
-  deleteBooks(bookId: number): Observable<{
-    success: boolean;
-    message: string;
-    data: Array<{ id: number; title: string }>;
-  }> {
-    return this.http.delete<{
-      success: boolean;
-      message: string;
-      data: Array<{ id: number; title: string }>;
-    }>(`${this.apiUrl}/book/${bookId}`);
-  }
-
-  searchedBook(term: string): Observable<{
-    success: boolean;
-    message: string;
-    data: Array<{ id: number; title: string }>;
-  }> {
-    if (!term.trim()) {
-      // if not search term, return empty hero array.
-      return <any>[];
-    }
-    return this.http.get<{
-      success: boolean;
-      message: string;
-      data: Array<{ id: number; title: string }>;
-    }>(`${this.apiUrl}/book`);
+  deleteBooks(bookId: number): Observable<IListBooksResponse> {
+    return this.http.delete<IListBooksResponse>(
+      `${this.apiUrl}/book/${bookId}`
+    );
   }
 }
