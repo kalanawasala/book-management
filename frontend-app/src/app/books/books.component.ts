@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { BookService } from '../service/book.service';
-import { Book } from '../assets/book';
-import { tick } from '@angular/core/testing';
+import { HttpErrorResponse } from '@angular/common/http';
+import { IBook } from '../shared/interfaces/book.interface';
 
 @Component({
   selector: 'app-books',
@@ -9,37 +9,43 @@ import { tick } from '@angular/core/testing';
   styleUrls: ['./books.component.css'],
 })
 export class BooksComponent implements OnInit {
-  //make as object
-  allBook: Array<{ id: number; title: string }> = [];
+  allBook: IBook[];
 
-  constructor(private bookService: BookService) {}
+  constructor(private bookService: BookService) {
+    this.allBook = [];
+  }
 
   ngOnInit() {
     this.getBooks();
   }
 
   public getBooks() {
-    try {
-      this.bookService.getAllBooks().subscribe((response) => {
-        this.allBook = response.data;
-      });
-    } catch (e) {
-      console.log('error is', e);
-    }
+    this.bookService.getAllBooks().subscribe({
+      next: (response) => {
+        if (response.success && response.data) {
+          this.allBook = response.data;
+        }
+      },
+      error: (error: HttpErrorResponse) => {
+        console.log(error);
+      },
+    });
   }
 
   public addBooks(title: string): void {
-    // this.bookService.addBooks(this.allBook).subscribe((response) => {
-    //   console.log('User created:', response);
-    //   this.getBooks();
-    //   this.allBook.add = response;
     title = title.trim();
     if (!title) {
       return;
     }
-    this.bookService.addBooks({ title } as any).subscribe((response) => {
-      this.allBook = response.data;
-      this.getBooks();
+    this.bookService.addBooks({ title }).subscribe({
+      next: (response) => {
+        if (response.success) {
+          this.getBooks();
+        }
+      },
+      error: (error: HttpErrorResponse) => {
+        console.log(error);
+      },
     });
   }
 }
