@@ -4,9 +4,7 @@ namespace Modules\V1\Http\Controllers;
 
 use Illuminate\Http\Request;
 use PhpParser\Node\Stmt\Catch_;
-
 use Illuminate\Routing\Controller;
-
 use Illuminate\Support\Facades\Validator;
 use Modules\V1\Repositories\BookRepository;
 use Illuminate\Contracts\Support\Renderable;
