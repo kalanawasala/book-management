@@ -15,4 +15,9 @@ class UserRepository extends BaseRepository
     }
 
     public function __construct() {}
+
+    public function create($data)
+    {
+        DB::table('users')->insert($data);
+    }
 }
