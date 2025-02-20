@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace Modules\V1\Http\Controllers;
 
 use Modules\V1\Repositories\UserRepository;
 use App\Http\Controllers\Controller;
@@ -35,7 +35,7 @@ class AuthController extends Controller
     public function login(LoginUserRequest $request)
     {
 
-        $credentials = $request->only(['email', 'password']);
+        $credentials = $request->only(['name', 'email', 'password']);
 
         if (!auth()->attempt($credentials)) {
             return response()->json(['success' => false, 'errors' => 'Invalid username and Password'], 401);
@@ -50,23 +50,14 @@ class AuthController extends Controller
     public function register(CreateUserRequest $request)
     {
         try {
-            $user = User::create([
-                'name' => $request->name,
-                'email' => $request->email,
-                'password' => Hash::make($request->password),
-            ]);
-
-            // return response()->json([
-            //     'success' => true,
-            //     'message' => '¡Successfully registered user!',
-            // ], 201);
+            $user = $this->userRepository->createUser($request);
 
             $token = Auth::login($user);
             return response()->json([
                 'status' => 'success',
                 'message' => 'User created successfully',
                 'user' => $user,
-                'authorisation' => [
+                'authorization' => [
                     'token' => $token,
                     'type' => 'bearer',
                 ]
