@@ -23,6 +23,7 @@ class UserRepository extends BaseRepository
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
+
         ]);
         return $user;
     }

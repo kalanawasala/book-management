@@ -8,6 +8,7 @@ import { BooksDetailsComponent } from './books-details/books-details.component';
 import { FormControl } from '@angular/forms';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [
@@ -15,6 +16,7 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
     BooksComponent,
     BooksDetailsComponent,
     DashboardComponent,
+    LoginComponent,
   ],
   imports: [BrowserModule, HttpClientModule, AppRoutingModule, FormsModule],
   providers: [],
