@@ -5,11 +5,13 @@ import { BooksComponent } from '../books/books.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { DashboardComponent } from '../dashboard/dashboard.component';
 import { BooksDetailsComponent } from '../books-details/books-details.component';
+import { UserComponent } from '../user/user.component';
 
 const routes: Routes = [
   { path: 'details/:id', component: BooksDetailsComponent },
   { path: 'books', component: BooksComponent },
   { path: 'dashboard', component: DashboardComponent },
+  { path: 'login', component: UserComponent },
   { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
 ];
 

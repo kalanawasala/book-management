@@ -8,7 +8,7 @@ import { BooksDetailsComponent } from './books-details/books-details.component';
 import { FormControl } from '@angular/forms';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
-import { LoginComponent } from './login/login.component';
+import { UserComponent } from './user/user.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +16,7 @@ import { LoginComponent } from './login/login.component';
     BooksComponent,
     BooksDetailsComponent,
     DashboardComponent,
-    LoginComponent,
+    UserComponent,
   ],
   imports: [BrowserModule, HttpClientModule, AppRoutingModule, FormsModule],
   providers: [],

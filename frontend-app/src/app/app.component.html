@@ -7,11 +7,14 @@
   </head>
   <body>
     <h1>{{ title }}</h1>
-    <nav class="main-menu">
-      <a routerLink="/books">View All Books</a>
-      <a routerLink="/dashboard">Dash Board</a>
-    </nav>
-
+    <div class="main-menu-container">
+      <nav class="main-menu">
+        <a routerLink="/login">Login</a>
+        <a routerLink="/register">Register</a>
+        <a routerLink="/books">View All Books</a>
+        <a routerLink="/dashboard">Dash Board</a>
+      </nav>
+    </div>
     <router-outlet></router-outlet>
   </body>
 </html>
