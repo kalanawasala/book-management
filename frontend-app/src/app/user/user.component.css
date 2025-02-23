@@ -1,15 +1,29 @@
 .form-container {
+  width: 100%;
   display: flex;
   flex-direction: column;
+  align-items: center;
   flex-wrap: wrap;
-  align-items: center;
-  border: 10;
+  justify-content: space-around;
 }
-
 .login-form {
+  align-self: center;
+  width: 200px;
+  height: 150px;
+  display: flex;
+  flex-direction: column;
   align-items: center;
-  border: 10;
-}
+  flex-wrap: nowrap;
+  gap: 10px;
+  gap: 10px 20px; /* row-gap column gap */
+  row-gap: 10px;
+  column-gap: 20px;
+  border-style: solid 3px;
 
-.login-form.md-3 {
+  border-color: black;
+}
+.form-field {
+  display: flexbox;
+  flex-direction: column;
+  border: 5;
 }

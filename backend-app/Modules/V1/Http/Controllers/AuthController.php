@@ -35,9 +35,9 @@ class AuthController extends Controller
     public function login(LoginUserRequest $request)
     {
 
-        $credentials = $request->only(['name', 'email', 'password']);
+        $credentials = $request->only(['email', 'password']);
 
-        if (!auth()->attempt($credentials)) {
+        if (! $token = auth()->attempt($credentials)) {
             return response()->json(['success' => false, 'errors' => 'Invalid username and Password'], 401);
         }
 
@@ -82,7 +82,8 @@ class AuthController extends Controller
     protected function respondWithToken($token)
     {
         return response()->json([
-            'access_token' => $token,
+            'success' => true,
+            'token' => $token,
             'token_type' => 'bearer',
             'expires_in' => '3600s'
         ]);
