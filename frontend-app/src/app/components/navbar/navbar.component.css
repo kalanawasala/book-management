@@ -5,24 +5,28 @@ h1 {
 h1 {
   margin-bottom: 0;
 }
-.main-menu-container {
+.navbar {
   width: 100%;
   display: flex;
-  background: #200974;
+}
+.main-menu-container {
+  width: 100%;
   border-radius: 5px;
   white-space: 10px;
-  flex-wrap: wrap;
-  justify-content: space-evenly;
-  align-content: space-between;
 }
-.main-menu {
-  height: 60px;
+.menu-items {
+  background-color: #42545c;
+  padding-left: 0;
+  align-content: center;
+}
+.nav-item {
+  display: inline-block;
+  justify-content: right;
 }
 nav a {
   padding: 1rem;
   text-decoration: none;
   margin-top: 3.4px;
-  display: inline-block;
   background-color: #e8e8e8;
   color: #3d3d3d;
   border-radius: 5px;

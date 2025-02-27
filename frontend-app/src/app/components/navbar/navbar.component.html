@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Book</title>
+  </head>
+  <body>
+    <nav class="navbar">
+      <div class="main-menu-container">
+        <ul class="menu-items">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" routerLink="login"
+              >Home</a
+            >
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/login" *ngIf="!loggedIn">Login</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/register" *ngIf="!loggedIn"
+              >Register</a
+            >
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/dashboard" *ngIf="!loggedIn"
+              >Dashboard</a
+            >
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/books" *ngIf="!loggedIn"
+              >All Books</a
+            >
+          </li>
+          <li class="nav-item">
+            <a
+              class="nav-link"
+              routerLink="/login"
+              (click)="logout($event)"
+              *ngIf="!loggedIn"
+              >Logout</a
+            >
+          </li>
+        </ul>
+        <!-- <div class="main-menu-container">
+            <nav class="main-menu">
+              <a routerLink="/login">Login</a>
+              <a routerLink="/register">Register</a>
+              <a routerLink="/books">View All Books</a>
+              <a routerLink="/dashboard">Dash Board</a>
+            </nav>
+          </div> -->
+      </div>
+    </nav>
+  </body>
+</html>

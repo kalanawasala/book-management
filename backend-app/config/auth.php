@@ -1,5 +1,9 @@
 <?php
 
+use App\Modules\V1\Entities\User;
+use Illuminate\Support\Facades\App;
+use Modules\V1\Entities\User as EntitiesUser;
+
 return [
 
     /*
@@ -14,7 +18,7 @@ return [
     */
 
     'defaults' => [
-        'guard' => 'web',
+        'guard' => 'api',
         'passwords' => 'users',
     ],
 
@@ -42,9 +46,9 @@ return [
         ],
 
         'api' => [
-            'driver' => 'token',
+            'driver' => 'jwt',
             'provider' => 'users',
-            'hash' => false,
+            // 'hash' => false,
         ],
     ],
 
@@ -68,7 +72,7 @@ return [
     'providers' => [
         'users' => [
             'driver' => 'eloquent',
-            'model' => App\User::class,
+            'model' => EntitiesUser::class,
         ],
 
         // 'users' => [

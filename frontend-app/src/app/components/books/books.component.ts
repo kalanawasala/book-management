@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { BookService } from '../service/book.service';
+import { BookService } from '../../service/book.service';
 import { HttpErrorResponse } from '@angular/common/http';
-import { IBook } from '../shared/interfaces/book.interface';
+import { IBook } from '../../shared/interfaces/book.interface';
 
 @Component({
-  selector: 'app-books',
+  selector: './app-books',
   templateUrl: './books.component.html',
   styleUrls: ['./books.component.css'],
 })
