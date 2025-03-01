@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { TokenService } from './token.service';
 import { BehaviorSubject } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root',
@@ -11,6 +12,10 @@ export class AuthService {
 
   changeAuthStatus(value: boolean) {
     this.loggedIn.next(value);
+    this.tokenService.remove();
   }
-  constructor(private tokenService: TokenService) {}
+  get isLoggedIn() {
+    return this.loggedIn.asObservable();
+  }
+  constructor(private tokenService: TokenService, private router: Router) {}
 }

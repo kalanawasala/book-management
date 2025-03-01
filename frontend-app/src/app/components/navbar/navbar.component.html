@@ -4,50 +4,38 @@
     <title>Book</title>
   </head>
   <body>
-    <nav class="navbar">
-      <div class="main-menu-container">
-        <ul class="menu-items">
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" routerLink="login"
-              >Home</a
-            >
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" routerLink="/login" *ngIf="!loggedIn">Login</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" routerLink="/register" *ngIf="!loggedIn"
-              >Register</a
-            >
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" routerLink="/dashboard" *ngIf="!loggedIn"
-              >Dashboard</a
-            >
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" routerLink="/books" *ngIf="!loggedIn"
-              >All Books</a
-            >
-          </li>
-          <li class="nav-item">
-            <a
-              class="nav-link"
-              routerLink="/login"
-              (click)="logout($event)"
-              *ngIf="!loggedIn"
-              >Logout</a
-            >
-          </li>
-        </ul>
-        <!-- <div class="main-menu-container">
-            <nav class="main-menu">
-              <a routerLink="/login">Login</a>
-              <a routerLink="/register">Register</a>
-              <a routerLink="/books">View All Books</a>
-              <a routerLink="/dashboard">Dash Board</a>
-            </nav>
-          </div> -->
+    <nav class="navbar navbar-expand-lg bg-light" *ngIf="isLoggedIn$ | async">
+      <div class="container-fluid">
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarTogglerDemo03"
+          aria-controls="navbarTogglerDemo03"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link" routerLink="/dashboard">Dashboard</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" routerLink="/books">All Books</a>
+            </li>
+            <li class="nav-item">
+              <a
+                class="nav-link"
+                href="#"
+                onclick="Logout($event)"
+                routerLink="/"
+                >Logout</a
+              >
+            </li>
+          </ul>
+        </div>
       </div>
     </nav>
   </body>

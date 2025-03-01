@@ -11,6 +11,15 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { UserComponent } from './components/user/user.component';
 import { UserSignupComponent } from './components/user-signup/user-signup.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
+import { TooltipModule } from 'ngx-bootstrap/tooltip';
+import { ModalModule } from 'ngx-bootstrap/modal';
+import { authGuard } from './guards/auth.guard';
+import { AuthService } from './service/auth.service';
+import { LoginLayoutComponent } from './layouts/login-layout/login-layout.component';
+import { UserLayoutComponent } from './layouts/user-layout/user-layout.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +30,8 @@ import { NavbarComponent } from './components/navbar/navbar.component';
     UserComponent,
     UserSignupComponent,
     NavbarComponent,
+    LoginLayoutComponent,
+    UserLayoutComponent,
   ],
   imports: [
     BrowserModule,
@@ -28,8 +39,13 @@ import { NavbarComponent } from './components/navbar/navbar.component';
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
+    BrowserAnimationsModule,
+    NgbModule,
+    BsDropdownModule.forRoot(),
+    TooltipModule.forRoot(),
+    ModalModule.forRoot(),
   ],
-  providers: [],
+  providers: [AuthService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
