@@ -6,19 +6,19 @@ import { IUserJwtResponse } from '../shared/interfaces/user-jwt-response.interfa
 })
 export class TokenService {
   constructor() {}
-  handle(token: IUserJwtResponse) {
-    this.set(token);
-  }
-  set(token: IUserJwtResponse) {
-    return localStorage.setItem('localToken', token.token);
-  }
+  // handle(token: IUserJwtResponse) {
+  //   this.set(token);
+  // }
+  // set(token: IUserJwtResponse) {
+  //   return localStorage.setItem('JWT_Token', token.token);
+  // }
 
   get() {
-    return localStorage.getItem('localToken');
+    return localStorage.getItem('JWT_Token');
   }
 
   remove() {
-    return localStorage.removeItem('localToken');
+    return localStorage.removeItem('JWT_Token');
   }
 
   isValid() {

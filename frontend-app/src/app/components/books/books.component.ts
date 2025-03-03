@@ -23,6 +23,7 @@ export class BooksComponent implements OnInit {
     this.bookService.getAllBooks().subscribe({
       next: (response) => {
         if (response.success && response.data) {
+          // console.log(response.data);
           this.allBook = response.data;
         }
       },

@@ -25,12 +25,15 @@ Route::group([
     'prefix' => 'v1'
 ], function ($router) {
 
-    Route::get('/book', 'BookController@listBooks')->middleware("cors");
-    Route::get('/book/{id}', 'BookController@listBook')->middleware("cors");
-    Route::post('/book', 'BookController@createBook')->middleware("cors");
-    Route::put('/book/{id}', 'BookController@updateBook')->middleware("cors");
-    Route::delete('/book/{id}', 'BookController@deleteBook')->middleware("cors");
+    Route::get('/book', 'BookController@listBooks');
+    Route::get('/book/{id}', 'BookController@listBook');
+    Route::post('/book', 'BookController@createBook');
+    Route::put('/book/{id}', 'BookController@updateBook');
+    Route::delete('/book/{id}', 'BookController@deleteBook');
     //Route For User login
-    Route::post('/register', 'AuthController@register')->middleware("cors");;
-    Route::post('/login', 'AuthController@login')->middleware("cors");;
+    Route::post('/register', 'AuthController@register');
+    Route::post('/login', 'AuthController@login');
+    Route::get('/logout', 'AuthController@logout');
+    Route::post('/refresh', 'AuthController@refresh');
+    Route::get('/me', 'AuthController@me');
 });

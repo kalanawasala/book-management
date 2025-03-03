@@ -33,8 +33,8 @@ export class UserComponent implements OnInit {
     if (val.email && val.password) {
       this.userService.login(val).subscribe({
         next: (response) => {
-          if (response.success) {
-            //console.log('user is LoggedIn');
+          if (response) {
+            console.log('user is LoggedIn');
             // console.log(response);
             this.handleResponse(response);
           }
@@ -46,10 +46,9 @@ export class UserComponent implements OnInit {
     }
     this.formSubmitAttempt = true;
   }
-  handleResponse(response: IUserJwtResponse) {
-    //console.log(response);
+  handleResponse(response: boolean) {
     // this.token.handle(data.access_token);
     this.authService.changeAuthStatus(true);
-    this.router.navigateByUrl('/dashboard');
+    this.router.navigateByUrl('dashboard');
   }
 }

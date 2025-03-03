@@ -2,6 +2,8 @@
 
 namespace Modules\V1\Http\Controllers;
 
+use Tymon\JWTAuth\Facades\JWTAuth;
+use Tymon\JWTAuth\Exceptions\JWTException;
 use Modules\V1\Repositories\UserRepository;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -21,7 +23,7 @@ class AuthController extends Controller
      */
     public function __construct(UserRepository $userRepository)
     {
-        $this->middleware('auth:api', ['except' => ['login', 'register']]);
+        $this->middleware('auth:api', ['except' => ['login', 'register', 'logout', 'me']]);
         $this->userRepository = $userRepository;
     }
 
@@ -33,16 +35,20 @@ class AuthController extends Controller
      */
     public function login(LoginUserRequest $request)
     {
+        try {
 
-        $credentials = $request->only(['email', 'password']);
+            $credentials = $request->only(['email', 'password']);
 
-        if (! $token = auth()->attempt($credentials)) {
-            return response()->json(['success' => false, 'errors' => 'Invalid username and Password'], 401);
+            if (! $token = auth()->attempt($credentials)) {
+                return response()->json(['success' => false, 'errors' => 'Invalid username and Password'], 401);
+            }
+
+            $token = auth('api')->attempt($credentials);
+
+            return $this->respondWithToken($token);
+        } catch (JWTException $e) {
+            return response()->json(['success' => false, 'error' => 'Could not Create token'], 500);
         }
-
-        $token = auth('api')->attempt($credentials);
-
-        return $this->respondWithToken($token);
     }
 
 
@@ -80,7 +86,7 @@ class AuthController extends Controller
     {
         auth()->logout();
 
-        return response()->json(['message' => 'Successfully logged out']);
+        return response()->json(['success' => true, 'message' => 'user Successfully logged out'], 200);
     }
 
     /**
@@ -90,7 +96,7 @@ class AuthController extends Controller
      */
     public function refresh()
     {
-        return $this->respondWithToken(auth()->refresh(true, true));
+        return $this->respondWithToken(auth('api')->refresh(true, true));
     }
 
     /**

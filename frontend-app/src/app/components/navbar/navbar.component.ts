@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { Route, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { AuthService } from 'src/app/service/auth.service';
-import { TokenService } from 'src/app/service/token.service';
+import { JwtInterceptorService } from 'src/app/service/jwt-interceptor.service';
+import { HttpClient } from '@angular/common/http';
+import { HttpErrorResponse } from '@angular/common/http';
+import { UserService } from 'src/app/service/user.service';
 
 @Component({
   selector: 'app-navbar',
@@ -12,14 +14,27 @@ import { TokenService } from 'src/app/service/token.service';
 export class NavbarComponent implements OnInit {
   isLoggedIn$!: Observable<boolean>;
 
-  constructor(private authService: AuthService, private router: Router) {}
+  constructor(
+    private authService: AuthService,
+    private userService: UserService,
+    private jwtInterceptor: JwtInterceptorService
+  ) {}
 
   ngOnInit(): void {
-    this.isLoggedIn$ = this.authService.isLoggedIn;
+    this.isLoggedIn$ = this.authService.isUserLoggedIn;
   }
   onLogout(event: MouseEvent) {
     event.preventDefault();
-    this.authService.changeAuthStatus(false);
-    this.router.navigateByUrl('/login');
+    this.userService.logout().subscribe({
+      next: (response) => {
+        if (response.success) {
+          this.authService.changeAuthStatus(false);
+          console.log(response);
+        }
+      },
+      error: (error: HttpErrorResponse) => {
+        console.log(error);
+      },
+    });
   }
 }
