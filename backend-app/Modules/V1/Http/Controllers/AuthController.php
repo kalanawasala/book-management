@@ -9,9 +9,11 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
+use Laravel\Passport\Token;
 use Modules\V1\Http\Requests\User\CreateUserRequest;
 use Modules\V1\Http\Requests\User\LoginUserRequest;
 use Modules\V1\Entities\User;
+use Spatie\Permission\Contracts\Role;
 
 class AuthController extends Controller
 {
@@ -23,7 +25,7 @@ class AuthController extends Controller
      */
     public function __construct(UserRepository $userRepository)
     {
-        $this->middleware('auth:api', ['except' => ['login', 'register', 'logout', 'me']]);
+        $this->middleware('auth:api', ['except' => ['login']]);
         $this->userRepository = $userRepository;
     }
 
@@ -43,7 +45,7 @@ class AuthController extends Controller
                 return response()->json(['success' => false, 'errors' => 'Invalid username and Password'], 401);
             }
 
-            $token = auth('api')->attempt($credentials);
+            $token = auth()->attempt($credentials);
 
             return $this->respondWithToken($token);
         } catch (JWTException $e) {
@@ -56,7 +58,6 @@ class AuthController extends Controller
     {
         try {
             $user = $this->userRepository->createUser($request);
-
             $token = Auth::login($user);
             return $this->respondWithToken($token);
         } catch (\Exception $e) {
