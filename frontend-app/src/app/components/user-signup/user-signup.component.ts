@@ -21,7 +21,7 @@ export class UserSignupComponent {
     confirmPassword: '',
   };
   public error: any = [];
-  public msg: any = null;
+  public msg!: boolean;
   public submitSignup(registrationForm: NgForm) {
     const userValues = this.form;
     if (!(userValues.password === userValues.confirmPassword)) {
@@ -31,7 +31,7 @@ export class UserSignupComponent {
       // (data) => console.log(data)
       next: (response) => {
         if (response.success && response.token) {
-          this.msg = 'success';
+          this.msg = true;
           registrationForm.resetForm();
         }
       },

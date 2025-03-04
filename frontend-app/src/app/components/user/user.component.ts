@@ -37,6 +37,8 @@ export class UserComponent implements OnInit {
             console.log('user is LoggedIn');
             // console.log(response);
             this.handleResponse(response);
+          } else {
+            this.msg = true;
           }
         },
         error: (error: HttpErrorResponse) => {

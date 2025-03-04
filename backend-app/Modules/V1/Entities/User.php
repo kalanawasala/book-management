@@ -2,6 +2,7 @@
 
 namespace Modules\V1\Entities;
 
+use Spatie\Permission\Traits\HasRoles;
 use Tymon\JWTAuth\Contracts\JWTSubject;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -9,13 +10,13 @@ use Illuminate\Database\Eloquent\Model;
 
 class User extends Authenticatable implements JWTSubject
 {
-    use Notifiable;
+    use Notifiable, HasRoles;
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
-    protected $fillable = ['id', 'name', 'email', 'password', 'role', 'created_at', 'updated_at'];
+    protected $fillable = ['name', 'email', 'password'];
     protected $table = 'users';
 
     /**

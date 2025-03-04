@@ -38,7 +38,7 @@ export class UserService {
   }
 
   logout(): Observable<any> {
-    return this.http.get<any>(`${this.apiUrl}/logout`);
+    return this.http.get<IUserJwtResponse>(`${this.apiUrl}/logout`);
   }
 
   me(): Observable<IUserJwtResponse> {

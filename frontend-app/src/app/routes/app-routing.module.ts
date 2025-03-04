@@ -9,6 +9,7 @@ import { UserComponent } from '../components/user/user.component';
 import { authGuard } from '../guards/auth.guard';
 import { UserLayoutComponent } from '../layouts/user-layout/user-layout.component';
 import { LoginLayoutComponent } from '../layouts/login-layout/login-layout.component';
+import { UserSignupComponent } from '../components/user-signup/user-signup.component';
 
 const routes: Routes = [
   {
@@ -32,6 +33,12 @@ const routes: Routes = [
     path: 'login',
     component: UserComponent,
     pathMatch: 'full',
+  },
+  {
+    path: 'user',
+    component: UserSignupComponent,
+    pathMatch: 'full',
+    canActivate: [authGuard],
   },
   {
     path: '',
