@@ -1,28 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-  </head>
-  <body>
-    <div class="container">
-      <div class="item">
-        <label for="new-book">Book Title: </label>
-        <input id="new-book" #BookTitle />
-
-        <!-- (click) passes input value to add() and then clears the input -->
-        <button
-          type="button"
-          class="add-button"
-          (click)="addBooks(BookTitle.value); BookTitle.value = ''"
-        >
-          Add Book
-        </button>
-      </div>
-      <!-- <ul>
-  <li *ngIf="allBook">{{ allBook.data | json }}</li>
-</ul> -->
+<!-- 
       <div class="item">
         <ul class="books">
           <li *ngFor="let book of allBook">
@@ -34,7 +10,159 @@
             </a>
           </li>
         </ul>
+      </div> -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <!-- <!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <form
+      class="form-container"
+      style="border: 1px solid #ccc"
+      #registrationForm="ngForm"
+      (ngSubmit)="submitSignup(registrationForm)"
+    >
+      <div class="container">
+        <h1>Sign Up</h1>
+        <div class="row" *ngIf="msg">
+          <div class="col-xs-12">
+            <p class="alert alert-success">
+              <strong>Registration Success!</strong>
+              <a routerLink="/login"> Please click here to login!. </a>
+            </p>
+          </div>
+        </div>
+        <p>Please fill in this form to create an account.</p>
+        <hr />
+        <label for="name"><b>Name</b></label>
+        <input
+          type="text"
+          placeholder="Enter Name"
+          name="name"
+          [(ngModel)]="form.name"
+          required
+        />
+
+        <label for="email"><b>Email</b></label>
+        <input
+          type="text"
+          placeholder="Enter Email"
+          name="email"
+          [(ngModel)]="form.email"
+          required
+          required
+        />
+
+        <label for="psw"><b>Password</b></label>
+        <input
+          type="password"
+          placeholder="Enter Password"
+          name="psw"
+          required
+          [(ngModel)]="form.password"
+    
+        />
+
+        <label for="psw-repeat"><b>Repeat Password</b></label>
+        <input
+          type="password"
+          placeholder="Repeat Password"
+          name="psw-repeat"
+          [(ngModel)]="form.confirmPassword"
+          required
+        />
+        <p>
+          By creating an account you agree to our
+          <a href="#" style="color: dodgerblue">Terms & Privacy</a>.
+        </p>
+
+        <div class="clearfix">
+          <button type="button" class="cancelbtn">Cancel</button>
+          <button
+            type="submit"
+            class="signupbtn"
+            [disabled]="!registrationForm.valid"
+          >
+            SignUp
+          </button>
+        </div>
       </div>
-    </div>
+    </form>
+  </body>
+</html> -->
+
+    <!DOCTYPE html>
+    <html lang="en">
+      <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+      </head>
+      <body>
+        <form #addBooksForm="ngForm" (ngSubmit)="addBooks(addBooksForm)">
+          <div class="row" *ngIf="msg">
+            <div class="col-xs-12">
+              <p class="alert alert-success">
+                <strong>Add Success!</strong>
+              </p>
+            </div>
+          </div>
+          <section class="vh-100" style="background-color: #2779e2">
+            <div class="container h-100">
+              <div
+                class="row d-flex justify-content-center align-items-center h-100"
+              >
+                <div class="col-xl-9">
+                  <h1 class="text-white mb-4">Create Book</h1>
+
+                  <div class="card" style="border-radius: 15px">
+                    <div class="card-body">
+                      <div class="row align-items-center pt-4 pb-3">
+                        <div class="col-md-3 ps-5">
+                          <h6 class="mb-0">Title</h6>
+                        </div>
+                        <div class="col-md-9 pe-5">
+                          <input
+                            name="bookName"
+                            type="text"
+                            class="form-control form-control-lg"
+                            [(ngModel)]="form.title"
+                            required
+                          />
+                        </div>
+                      </div>
+
+                      <hr class="mx-n3" />
+
+                      <div class="px-5 py-4">
+                        <button
+                          type="submit"
+                          data-mdb-button-init
+                          data-mdb-ripple-init
+                          class="btn btn-primary btn-lg"
+                        >
+                          Create Book
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+        </form>
+      </body>
+    </html>
   </body>
 </html>
