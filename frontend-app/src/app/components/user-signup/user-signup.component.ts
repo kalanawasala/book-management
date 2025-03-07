@@ -27,7 +27,7 @@ export class UserSignupComponent {
     if (!(userValues.password === userValues.confirmPassword)) {
       console.log('Password Is Incorrect');
     }
-    return this.userService.signup(userValues).subscribe({
+    return this.userService.createUser(userValues).subscribe({
       // (data) => console.log(data)
       next: (response) => {
         if (response.success && response.token) {

@@ -12,12 +12,10 @@ export class AuthService {
 
   changeAuthStatus(value: boolean) {
     this.loggedIn.next(value);
-    this.tokenService.remove();
-    this.router.navigate(['/']);
   }
   get isUserLoggedIn() {
     return this.loggedIn.asObservable();
   }
 
-  constructor(private tokenService: TokenService, private router: Router) {}
+  constructor(private tokenService: TokenService) {}
 }

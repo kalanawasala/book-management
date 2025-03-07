@@ -21,15 +21,18 @@ Route::middleware('auth:api')->get('/v1', function (Request $request) {
     return $request->user();
 });
 
+
 Route::group([
     'middleware' => ['api'],
     'prefix' => 'v1'
 ], function () {
     Route::post('/login', 'AuthController@login');
+    Route::get('/protected-endpoint', 'AuthController@protectedEndpoint');
 });
 
 Route::group([
-    'middlewares' => ['role:admin'],
+    'middlewares' => ['jwt.auth'],
+    'prefix' => 'v1'
 ], function () {
 
     Route::get('/book', 'BookController@listBooks');
@@ -38,17 +41,8 @@ Route::group([
     Route::put('/book/{id}', 'BookController@updateBook');
     Route::delete('/book/{id}', 'BookController@deleteBook');
     //Route For User login
-    // Route::post('/register', 'AuthController@register');
+    Route::post('/createUser', 'AuthController@createUser');
     Route::get('/logout', 'AuthController@logout');
     Route::post('/refresh', 'AuthController@refresh');
-    Route::get('/me', 'AuthController@me');
-});
-Route::group([
-    'middleware' => ['role:user'],
-], function () {
-    Route::get('/book', 'BookController@listBooks');
-    Route::post('/book', 'BookController@createBook');
-    Route::put('/book/{id}', 'BookController@updateBook');
-    //Route For User login
-    Route::get('/logout', 'AuthController@logout');
+    Route::get('/user', 'AuthController@getUser');
 });

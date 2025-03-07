@@ -19,29 +19,22 @@ export class UserService {
     this.apiUrl = environment.apiUrl;
   }
 
-  signup(props: TCreateUserProps): Observable<IListUserResponse> {
-    return this.http.post<IListUserResponse>(`${this.apiUrl}/register`, props);
-  }
-
-  login(props: TUserLoginProps): Observable<boolean> {
-    return this.http.post<IUserJwtResponse>(`${this.apiUrl}/login`, props).pipe(
-      map((response) => {
-        localStorage.setItem('JWT_Token', response.token);
-        // console.log(response);
-        return true;
-      }),
-      catchError((error) => {
-        console.log(error);
-        return of(false);
-      })
+  createUser(props: TCreateUserProps): Observable<IListUserResponse> {
+    return this.http.post<IListUserResponse>(
+      `${this.apiUrl}/createUser`,
+      props
     );
   }
 
-  logout(): Observable<any> {
+  login(props: TUserLoginProps): Observable<IUserJwtResponse> {
+    return this.http.post<IUserJwtResponse>(`${this.apiUrl}/login`, props);
+  }
+
+  logout(): Observable<IUserJwtResponse> {
     return this.http.get<IUserJwtResponse>(`${this.apiUrl}/logout`);
   }
 
-  me(): Observable<IUserJwtResponse> {
-    return this.http.get<IUserJwtResponse>(`${this.apiUrl}/me`);
+  getUser(): Observable<IUserJwtResponse> {
+    return this.http.get<IUserJwtResponse>(`${this.apiUrl}/getUser`);
   }
 }

@@ -6,12 +6,12 @@ import { IUserJwtResponse } from '../shared/interfaces/user-jwt-response.interfa
 })
 export class TokenService {
   constructor() {}
-  // handle(token: IUserJwtResponse) {
-  //   this.set(token);
-  // }
-  // set(token: IUserJwtResponse) {
-  //   return localStorage.setItem('JWT_Token', token.token);
-  // }
+  handle(token: IUserJwtResponse) {
+    this.set(token);
+  }
+  set(token: IUserJwtResponse) {
+    return localStorage.setItem('JWT_Token', token.token);
+  }
 
   get() {
     return localStorage.getItem('JWT_Token');

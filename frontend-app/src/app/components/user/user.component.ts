@@ -5,6 +5,9 @@ import { AuthService } from 'src/app/service/auth.service';
 import { IUserJwtResponse } from 'src/app/shared/interfaces/user-jwt-response.interface';
 import { HttpErrorResponse } from '@angular/common/http';
 import { FormGroup, Validators, FormsModule } from '@angular/forms';
+import { Token } from '@angular/compiler';
+import { TokenService } from 'src/app/service/token.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: './app-user',
@@ -12,7 +15,6 @@ import { FormGroup, Validators, FormsModule } from '@angular/forms';
   styleUrls: ['./user.component.css'],
 })
 export class UserComponent implements OnInit {
-  private formSubmitAttempt: boolean | undefined;
   public error: any = [];
   public msg: any;
 
@@ -33,10 +35,8 @@ export class UserComponent implements OnInit {
     if (val.email && val.password) {
       this.userService.login(val).subscribe({
         next: (response) => {
-          if (response) {
-            console.log('user is LoggedIn');
-            // console.log(response);
-            this.handleResponse(response);
+          if (response.success) {
+            this.handleResponse(response.token);
           } else {
             this.msg = true;
           }
@@ -46,10 +46,9 @@ export class UserComponent implements OnInit {
         },
       });
     }
-    this.formSubmitAttempt = true;
   }
-  handleResponse(response: boolean) {
-    // this.token.handle(data.access_token);
+  handleResponse(data: string) {
+    localStorage.setItem('JWT_Token', data);
     this.authService.changeAuthStatus(true);
     this.router.navigateByUrl('dashboard');
   }

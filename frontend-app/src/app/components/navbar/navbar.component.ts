@@ -5,6 +5,7 @@ import { JwtInterceptorService } from 'src/app/service/jwt-interceptor.service';
 import { HttpClient } from '@angular/common/http';
 import { HttpErrorResponse } from '@angular/common/http';
 import { UserService } from 'src/app/service/user.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-navbar',
@@ -17,7 +18,7 @@ export class NavbarComponent implements OnInit {
   constructor(
     private authService: AuthService,
     private userService: UserService,
-    private jwtInterceptor: JwtInterceptorService
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -28,8 +29,9 @@ export class NavbarComponent implements OnInit {
     this.userService.logout().subscribe({
       next: (response) => {
         if (response.success) {
+          this.router.navigateByUrl('login');
           this.authService.changeAuthStatus(false);
-          console.log(response);
+          console.log('userLoggedOut');
         }
       },
       error: (error: HttpErrorResponse) => {

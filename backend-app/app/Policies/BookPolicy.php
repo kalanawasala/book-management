@@ -65,7 +65,7 @@ class BookPolicy
      */
     public function delete(User $user, Book $book)
     {
-        return $user->id == $book->user_id;
+        return $user->can('Delete Post') && $user->id === $book->user_id;
     }
 
     /**

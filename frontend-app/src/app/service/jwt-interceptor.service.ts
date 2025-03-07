@@ -8,7 +8,6 @@ import {
 import { Observable } from 'rxjs';
 import { TokenService } from './token.service';
 import { IUserJwtResponse } from '../shared/interfaces/user-jwt-response.interface';
-import { IHttpResponse } from '../shared/interfaces/http-response.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -16,15 +15,15 @@ import { IHttpResponse } from '../shared/interfaces/http-response.interface';
 export class JwtInterceptorService implements HttpInterceptor {
   constructor(private tokenService: TokenService) {}
   intercept(
-    request: HttpRequest<any>,
+    request: HttpRequest<IUserJwtResponse>,
     next: HttpHandler
-  ): Observable<HttpEvent<IHttpResponse>> {
+  ): Observable<HttpEvent<any>> {
     // if (request.url.includes('/login')) {
     //   return next.handle(request);
     // }
     const token = this.tokenService.get();
     if (token) {
-      console.log(token);
+      // console.log(token);
       const authReq = request.clone({
         setHeaders: { Authorization: `Bearer ${token}` },
       });

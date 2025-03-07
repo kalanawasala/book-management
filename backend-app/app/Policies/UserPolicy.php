@@ -41,7 +41,7 @@ class UserPolicy
      */
     public function create(User $user)
     {
-        return $user->role == 'admin';
+        return $user->can('create_users');
     }
 
     /**

@@ -8,6 +8,7 @@ use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvid
 use Illuminate\Support\Facades\Gate;
 use Modules\V1\Entities\Book;
 use Modules\V1\Entities\User;
+use Illuminate\Auth\Access\Response;
 
 class AuthServiceProvider extends ServiceProvider
 {
@@ -31,6 +32,26 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-        //
+        Gate::define('edit_books', function ($user, $post) {
+            return $user->id === $post->user_id;
+        });
+
+        Gate::define('create_users', function (User $user) {
+            return $user->is_Admin
+                ? Response::allow()
+                : Response::deny('You must be an administrator.');
+        });
+
+        Gate::define('create_books', function (User $user) {
+            return $user->is_Admin
+                ? Response::allow()
+                : Response::deny('You must be an administrator.');
+        });
+        //check Before 
+        Gate::before(function ($user, $ability) {
+            if ($user->isAdmin()) {
+                return true;
+            }
+        });
     }
 }
