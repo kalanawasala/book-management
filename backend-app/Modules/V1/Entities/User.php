@@ -2,14 +2,17 @@
 
 namespace Modules\V1\Entities;
 
+use App\Modules\V1\Entities\Book;
 use Spatie\Permission\Traits\HasRoles;
 use Tymon\JWTAuth\Contracts\JWTSubject;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\App;
+use Spatie\Permission\Traits\HasPermissions;
 
 class User extends Authenticatable implements JWTSubject
 {
-    use Notifiable, HasRoles;
+    use Notifiable, HasRoles, HasPermissions;
     /**
      * The attributes that are mass assignable.
      *
@@ -48,8 +51,8 @@ class User extends Authenticatable implements JWTSubject
         return []; // You can add custom claims here if needed
     }
 
-    public function user()
+    public function book()
     {
-        return $this->belongsTo(User::class);
+        return $this->hasMany(Book::class);
     }
 }

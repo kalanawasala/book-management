@@ -41,7 +41,7 @@ class UserPolicy
      */
     public function create(User $user)
     {
-        return $user->can('create_users');
+        return $user->can('create_users'); // Must match 'create_users' in permissions table
     }
 
     /**

@@ -10,7 +10,7 @@ use Modules\V1\Http\Requests\User\CreateUserRequest;
 use Illuminate\Support\Facades\Gate;
 use Modules\V1\Entities\User;
 
-class AuthController extends Controller
+class UserController extends Controller
 {
     protected $userRepository;
     /**
@@ -56,6 +56,9 @@ class AuthController extends Controller
      */
     public function getUser()
     {
+        if (! Gate::allows('get_users')) {
+            abort(403);
+        }
         try {
             if (! $user = JWTAuth::parseToken()->authenticate()) {
                 return response()->json(['error' => 'User not found'], 404);
@@ -64,5 +67,15 @@ class AuthController extends Controller
             return response()->json(['error' => 'Invalid token'], 400);
         }
         return response()->json(JWTAuth::user($user));
+    }
+    protected function respondWithToken($token)
+    {
+        return response()->json([
+            'success' => true,
+            'message' => 'Token Generated Successfully',
+            'token' => $token,
+            'token_type' => 'bearer',
+            'expires_in' => JWTAuth::factory()->getTTL() * 60
+        ], 200);
     }
 }

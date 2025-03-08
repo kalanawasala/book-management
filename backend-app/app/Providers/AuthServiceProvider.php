@@ -47,6 +47,12 @@ class AuthServiceProvider extends ServiceProvider
                 ? Response::allow()
                 : Response::deny('You must be an administrator.');
         });
+
+        Gate::define('get_users', function (User $user) {
+            return $user->is_Admin
+                ? Response::allow()
+                : Response::deny('You must be an administrator.');
+        });
         //check Before 
         Gate::before(function ($user, $ability) {
             if ($user->isAdmin()) {

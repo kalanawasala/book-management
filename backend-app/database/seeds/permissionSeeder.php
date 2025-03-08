@@ -26,16 +26,29 @@ class PermissionSeeder extends Seeder
         $adminRole = Role::create(['name' => 'admin']);
         $userRole = Role::create(['name' => 'user']);
 
-        //create permission
-        $createPermission = Permission::create(['name' => 'create_users']);
-        $createBookPermission = Permission::create(['name' => 'create_books']);
-        $editPermission = Permission::create(['name' => 'edit_books']);
+        //permission of User
+        $adminPermissions = ([
+            $createPermission = Permission::create(['name' => 'create_users']),
+            $getUserPermission = Permission::create(['name' => 'get_users']),
+            $editUserPermission = Permission::create(['name' => 'edit_users']),
+            $deleteUserPermission = Permission::create(['name' => 'delete_users']),
+        ]);
+
+        $userPermissions = [
+            $createBookPermission = Permission::create(['name' => 'create_books']),
+            $deleteUserPermission = Permission::create(['name' => 'get_books']),
+            $editPermission = Permission::create(['name' => 'edit_books']),
+            $deleteBookPermission = Permission::create(['name' => 'delete_books']),
+        ];
+
+
 
         app()[\Spatie\Permission\PermissionRegistrar::class]->forgetCachedPermissions();
 
         //Assign permission to roles
-        $adminRole->givePermissionTo($createPermission, $createBookPermission, $editPermission);
-        $userRole->givePermissionTo($createBookPermission);
+        $adminRole->givePermissionTo($adminPermissions);
+        $adminRole->givePermissionTo($userPermissions);
+        $userRole->givePermissionTo($userPermissions);
 
         //Assign role to user
         $user = User::find(1); //Example user with ID   

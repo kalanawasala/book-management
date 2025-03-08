@@ -41,7 +41,7 @@ class BookPolicy
      */
     public function create(User $user)
     {
-        return $user->role == 'admin';
+        return $user->roles === 'admin';
     }
 
     /**

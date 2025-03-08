@@ -113,8 +113,8 @@
         <form #addBooksForm="ngForm" (ngSubmit)="addBooks(addBooksForm)">
           <div class="row" *ngIf="msg">
             <div class="col-xs-12">
-              <p class="alert alert-success">
-                <strong>Add Success!</strong>
+              <p class="alert alert-danger">
+                <strong>Add Failed!</strong>
               </p>
             </div>
           </div>

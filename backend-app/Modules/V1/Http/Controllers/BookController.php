@@ -59,9 +59,11 @@ class BookController extends Controller
 
     public function createBook(CreateBookRequest $request)
     {
-        try {
-            $this->authorize('create_Book', Book::class);
 
+        if (! Gate::allows('create_books')) {
+            abort(403);
+        }
+        try {
             $this->bookRepository->createBook($request->title);
 
             return response()->json([

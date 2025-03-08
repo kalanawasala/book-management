@@ -41,8 +41,8 @@ Route::group([
     Route::put('/book/{id}', 'BookController@updateBook');
     Route::delete('/book/{id}', 'BookController@deleteBook');
     //Route For User login
-    Route::post('/createUser', 'AuthController@createUser');
+    Route::post('/create', 'UserController@createUser');
     Route::get('/logout', 'AuthController@logout');
     Route::post('/refresh', 'AuthController@refresh');
-    Route::get('/user', 'AuthController@getUser');
+    Route::get('/user', 'UserController@getUser');
 });

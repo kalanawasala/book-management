@@ -9,6 +9,8 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Spatie\Permission\Traits\HasPermissions;
 
+
+
 class Book extends Authenticatable implements JWTSubject
 {
 
@@ -26,10 +28,7 @@ class Book extends Authenticatable implements JWTSubject
      *
      * @var array
      */
-    protected $hidden = [
-        'password',
-        'role'
-    ];
+    protected $hidden = [];
 
     /**
      * Get the JWT identifier.
@@ -53,6 +52,6 @@ class Book extends Authenticatable implements JWTSubject
 
     public function user()
     {
-        return $this->belongsTo(Book::class);
+        return $this->belongsTo(User::class);
     }
 }

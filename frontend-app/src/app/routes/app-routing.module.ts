@@ -10,6 +10,7 @@ import { authGuard } from '../guards/auth.guard';
 import { UserLayoutComponent } from '../layouts/user-layout/user-layout.component';
 import { LoginLayoutComponent } from '../layouts/login-layout/login-layout.component';
 import { UserSignupComponent } from '../components/user-signup/user-signup.component';
+import { NavbarComponent } from '../components/navbar/navbar.component';
 
 const routes: Routes = [
   {
@@ -26,6 +27,12 @@ const routes: Routes = [
   {
     path: 'dashboard',
     component: DashboardComponent,
+    pathMatch: 'full',
+    canActivate: [authGuard],
+  },
+  {
+    path: 'navbar',
+    component: NavbarComponent,
     pathMatch: 'full',
     canActivate: [authGuard],
   },
