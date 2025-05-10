@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Request;
 use Modules\V1\Http\Controllers\BookController;
+use Modules\V1\Http\Controllers\AuthController;
 use Modules\V1\Http\Requests\Book\UpdateBookRequest;
 
 /*
@@ -20,17 +21,28 @@ Route::middleware('auth:api')->get('/v1', function (Request $request) {
     return $request->user();
 });
 
+
 Route::group([
     'middleware' => ['api'],
     'prefix' => 'v1'
-], function ($router) {
+], function () {
+    Route::post('/login', 'AuthController@login');
+    Route::get('/protected-endpoint', 'AuthController@protectedEndpoint');
+});
 
-    Route::get('/book', 'BookController@listBooks')->middleware("cors");
-    Route::get('/book/{id}', 'BookController@listBook')->middleware("cors");
-    Route::post('/book', 'BookController@createBook')->middleware("cors");
-    Route::put('/book/{id}', 'BookController@updateBook')->middleware("cors");
-    Route::delete('/book/{id}', 'BookController@deleteBook')->middleware("cors");
+Route::group([
+    'middlewares' => ['jwt.auth'],
+    'prefix' => 'v1'
+], function () {
+
+    Route::get('/book', 'BookController@listBooks');
+    Route::get('/book/{id}', 'BookController@listBook');
+    Route::post('/book', 'BookController@createBook');
+    Route::put('/book/{id}', 'BookController@updateBook');
+    Route::delete('/book/{id}', 'BookController@deleteBook');
     //Route For User login
-    Route::post('/register', 'AuthController@register')->middleware("cors");;
-    Route::post('/login', 'AuthController@login')->middleware("cors");;
+    Route::post('/create', 'UserController@createUser');
+    Route::get('/logout', 'AuthController@logout');
+    Route::post('/refresh', 'AuthController@refresh');
+    Route::get('/user', 'UserController@getUser');
 });

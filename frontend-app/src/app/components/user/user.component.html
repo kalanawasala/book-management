@@ -6,43 +6,110 @@
     <title>Document</title>
   </head>
   <body>
-    <div class="form-container">
-      <h2>Login</h2>
+    <section class="vh-100 gradient-custom">
+      <form #loginForm="ngForm" (ngSubmit)="onSubmit()">
+        <div class="container py-5 h-100">
+          <div
+            class="row d-flex justify-content-center align-items-center h-100"
+          >
+            <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+              <div class="card bg-dark text-white" style="border-radius: 1rem">
+                <div class="card-body p-5 text-center">
+                  <div class="mb-md-5 mt-md-4 pb-5">
+                    <h6 class="fw-bold mb-2 text-uppercase">
+                      Book Management System
+                    </h6>
+                    <h3 class="fw-bold mb-2 text-uppercase">Login</h3>
+                    <p class="text-white-50 mb-5">
+                      "Once you learn to read, you will be forever free."
+                    </p>
+                    <p class="text-white-50 mb-5">
+                      Please enter your Email and password!
+                    </p>
+                    <div
+                      data-mdb-input-init
+                      class="form-outline form-white mb-4"
+                    >
+                      <input
+                        type="email"
+                        name="email"
+                        id="typeEmailX"
+                        class="form-control ng-untouched ng-pristine ng-valid"
+                        [(ngModel)]="form.email"
+                        #email="ngModel"
+                        autocomplete="on"
+                        required
+                      />
+                      <div
+                        [hidden]="email.valid || email.pristine"
+                        class="alert alert-danger"
+                      >
+                        Email Is Required
+                      </div>
+                      <label class="form-label" for="typeEmailX">Email</label>
+                    </div>
 
-      <form
-        #loginForm="ngForm"
-        (ngSubmit)="login()"
-        class="login-form"
-        style="border: 1px solid #ccc"
-      >
-        <div class="form-field">
-          <label for="email">E-mail</label>
-          <input
-            type="text"
-            class="form-control"
-            id="email"
-            name="email"
-            placeholder="email"
-            [(ngModel)]="form.email"
-            required
-          />
-        </div>
-        <div class="form-field">
-          <label for="password">Password</label>
-          <input
-            type="password"
-            class="form-control"
-            id="password"
-            name="password"
-            placeholder="password"
-            [(ngModel)]="form.password"
-            required
-          />
-        </div>
-        <div class="form-button">
-          <button type="submit" [disabled]="!loginForm.valid">Login</button>
+                    <div
+                      data-mdb-input-init
+                      class="form-outline form-white mb-4"
+                    >
+                      <input
+                        type="password"
+                        name="password"
+                        id="typePasswordX"
+                        class="form-control ng-untouched ng-pristine ng-valid"
+                        [(ngModel)]="form.password"
+                        #password="ngModel"
+                        autocomplete="false"
+                        required
+                      />
+                      <div
+                        [hidden]="password.valid || password.pristine"
+                        class="alert alert-danger"
+                      >
+                        Password Is required
+                      </div>
+                      <label class="form-label" for="typePasswordX"
+                        >Password</label
+                      >
+                    </div>
+                    <div class="row" *ngIf="msg">
+                      <div class="col-xs-12">
+                        <p class="alert alert-danger">
+                          <strong>invalid Credential Try Again!</strong>
+                        </p>
+                      </div>
+                    </div>
+                    <button
+                      data-mdb-button-init
+                      data-mdb-ripple-init
+                      class="btn btn-outline-light btn-lg px-5"
+                      type="submit"
+                      [disabled]="!loginForm.form.valid"
+                    >
+                      Login
+                    </button>
+
+                    <div
+                      class="d-flex justify-content-center text-center mt-4 pt-1"
+                    >
+                      <a href="#!" class="text-white"
+                        ><i class="fab fa-facebook-f fa-lg"></i
+                      ></a>
+                      <a href="#!" class="text-white"
+                        ><i class="fab fa-twitter fa-lg mx-4 px-2"></i
+                      ></a>
+                      <a href="#!" class="text-white"
+                        ><i class="fab fa-google fa-lg"></i
+                      ></a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </form>
-    </div>
+    </section>
   </body>
 </html>

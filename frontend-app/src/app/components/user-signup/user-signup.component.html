@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -50,7 +50,7 @@
           name="psw"
           required
           [(ngModel)]="form.password"
-          required
+    
         />
 
         <label for="psw-repeat"><b>Repeat Password</b></label>
@@ -61,17 +61,6 @@
           [(ngModel)]="form.confirmPassword"
           required
         />
-
-        <!-- <label>
-          <input
-            type="checkbox"
-            checked="checked"
-            name="remember"
-            style="margin-bottom: 15px"
-          />
-          Remember me
-        </label> -->
-
         <p>
           By creating an account you agree to our
           <a href="#" style="color: dodgerblue">Terms & Privacy</a>.
@@ -88,6 +77,125 @@
           </button>
         </div>
       </div>
+    </form>
+  </body>
+</html> -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <form
+      #userRegisterForm="ngForm"
+      (ngSubmit)="submitSignup(userRegisterForm)"
+    >
+      <div class="row" *ngIf="msg">
+        <div class="col-xs-12">
+          <p class="alert alert-success">
+            <strong>Registration Success!</strong>
+          </p>
+        </div>
+      </div>
+      <section class="vh-100" style="background-color: #2779e2">
+        <div class="container h-100">
+          <div
+            class="row d-flex justify-content-center align-items-center h-100"
+          >
+            <div class="col-xl-9">
+              <h1 class="text-white mb-4">Create User</h1>
+
+              <div class="card" style="border-radius: 15px">
+                <div class="card-body">
+                  <div class="row align-items-center pt-4 pb-3">
+                    <div class="col-md-3 ps-5">
+                      <h6 class="mb-0">Name</h6>
+                    </div>
+                    <div class="col-md-9 pe-5">
+                      <input
+                        name="name"
+                        type="text"
+                        class="form-control form-control-lg"
+                        [(ngModel)]="form.name"
+                        required
+                      />
+                    </div>
+                  </div>
+
+                  <hr class="mx-n3" />
+
+                  <div class="row align-items-center py-3">
+                    <div class="col-md-3 ps-5">
+                      <h6 class="mb-0">Email address</h6>
+                    </div>
+                    <div class="col-md-9 pe-5">
+                      <input
+                        name="email"
+                        type="email"
+                        class="form-control form-control-lg"
+                        placeholder="example@example.com"
+                        [(ngModel)]="form.email"
+                        required
+                      />
+                    </div>
+                  </div>
+
+                  <hr class="mx-n3" />
+                  <div class="row align-items-center py-3">
+                    <div class="col-md-3 ps-5">
+                      <h6 class="mb-0">Password</h6>
+                    </div>
+                    <div class="col-md-9 pe-5">
+                      <input
+                        name="password"
+                        type="password"
+                        class="form-control form-control-lg"
+                        placeholder="example@example.com"
+                        [(ngModel)]="form.password"
+                        required
+                      />
+                    </div>
+                  </div>
+
+                  <hr class="mx-n3" />
+
+                  <div class="row align-items-center py-3">
+                    <div class="col-md-3 ps-5">
+                      <h6 class="mb-0">Password</h6>
+                    </div>
+                    <div class="col-md-9 pe-5">
+                      <input
+                        name="confirmPassword"
+                        type="password"
+                        class="form-control form-control-lg"
+                        placeholder="example@example.com"
+                        [(ngModel)]="form.confirmPassword"
+                        required
+                      />
+                    </div>
+                  </div>
+
+                  <hr class="mx-n3" />
+
+                  <div class="px-5 py-4">
+                    <button
+                      type="submit"
+                      data-mdb-button-init
+                      data-mdb-ripple-init
+                      class="btn btn-primary btn-lg"
+                    >
+                      Create User
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
     </form>
   </body>
 </html>

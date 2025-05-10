@@ -15,9 +15,21 @@ class Cors
      */
     public function handle($request, Closure $next)
     {
-         // ## This is custom code for remove cors issue ##
-         return $next($request)
-         ->header('Access-Control-Allow-Origin', '*')
-         ->header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
+        // ## This is custom code for remove cors issue ##
+        return $next($request)
+            ->header('Access-Control-Allow-Origin', '*')
+            ->header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
     }
+    // public function handle($request, Closure $next)
+    // {
+    //     if ($request->has('token')) {
+    //         try {
+    //             dd($request->input('token'));
+    //             $this->auth = JWTAuth::parseToken()->authenticate();
+    //             return $next($request);
+    //         } catch (JWTException $e) {
+    //             return redirect()->guest('user/login');
+    //         }
+    //     }
+    // }
 }

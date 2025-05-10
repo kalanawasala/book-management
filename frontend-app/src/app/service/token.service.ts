@@ -10,15 +10,15 @@ export class TokenService {
     this.set(token);
   }
   set(token: IUserJwtResponse) {
-    return localStorage.setItem('localToken', token.token);
+    return localStorage.setItem('JWT_Token', token.token);
   }
 
   get() {
-    return localStorage.getItem('localToken');
+    return localStorage.getItem('JWT_Token');
   }
 
   remove() {
-    return localStorage.removeItem('localToken');
+    return localStorage.removeItem('JWT_Token');
   }
 
   isValid() {

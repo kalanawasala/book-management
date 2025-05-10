@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { BookService } from '../../service/book.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { IBook } from '../../shared/interfaces/book.interface';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: './app-books',
@@ -10,6 +11,11 @@ import { IBook } from '../../shared/interfaces/book.interface';
 })
 export class BooksComponent implements OnInit {
   allBook: IBook[];
+  msg!: boolean;
+
+  public form = {
+    title: '',
+  };
 
   constructor(private bookService: BookService) {
     this.allBook = [];
@@ -23,6 +29,7 @@ export class BooksComponent implements OnInit {
     this.bookService.getAllBooks().subscribe({
       next: (response) => {
         if (response.success && response.data) {
+          // console.log(response.data);
           this.allBook = response.data;
         }
       },
@@ -32,18 +39,19 @@ export class BooksComponent implements OnInit {
     });
   }
 
-  public addBooks(title: string): void {
-    title = title.trim();
+  public addBooks(createForm: NgForm): void {
+    const title = this.form;
     if (!title) {
-      return;
+      this.msg = false;
     }
-    this.bookService.addBooks({ title }).subscribe({
+    this.bookService.addBooks(title).subscribe({
       next: (response) => {
         if (response.success) {
           this.getBooks();
         }
       },
       error: (error: HttpErrorResponse) => {
+        this.msg = true;
         console.log(error);
       },
     });

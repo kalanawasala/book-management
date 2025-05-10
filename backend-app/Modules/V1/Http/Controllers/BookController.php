@@ -2,10 +2,8 @@
 
 namespace Modules\V1\Http\Controllers;
 
-use Illuminate\Http\Request;
-use PhpParser\Node\Stmt\Catch_;
 use Illuminate\Routing\Controller;
-use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Gate;
 use Modules\V1\Repositories\BookRepository;
 use Illuminate\Contracts\Support\Renderable;
 use Modules\V1\Entities\Book;
@@ -61,6 +59,10 @@ class BookController extends Controller
 
     public function createBook(CreateBookRequest $request)
     {
+
+        if (! Gate::allows('create_books')) {
+            abort(403);
+        }
         try {
             $this->bookRepository->createBook($request->title);
 

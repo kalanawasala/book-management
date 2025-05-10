@@ -4,6 +4,10 @@ import { Router } from '@angular/router';
 import { AuthService } from 'src/app/service/auth.service';
 import { IUserJwtResponse } from 'src/app/shared/interfaces/user-jwt-response.interface';
 import { HttpErrorResponse } from '@angular/common/http';
+import { FormGroup, Validators, FormsModule } from '@angular/forms';
+import { Token } from '@angular/compiler';
+import { TokenService } from 'src/app/service/token.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: './app-user',
@@ -11,7 +15,8 @@ import { HttpErrorResponse } from '@angular/common/http';
   styleUrls: ['./user.component.css'],
 })
 export class UserComponent implements OnInit {
-  loggedIn: boolean | undefined;
+  public error: any = [];
+  public msg: any;
 
   public form = {
     email: '',
@@ -22,33 +27,29 @@ export class UserComponent implements OnInit {
     private userService: UserService,
     private router: Router,
     private authService: AuthService
-  ) {
-    console.log('==' + this.loggedIn);
-  }
+  ) {}
   ngOnInit(): void {}
-  public login() {
+  public onSubmit() {
     const val = this.form;
 
     if (val.email && val.password) {
       this.userService.login(val).subscribe({
         next: (response) => {
           if (response.success) {
-            // console.log('user is LoggedIn');
-            console.log(response);
-            (response: IUserJwtResponse) => this.handleResponse(response);
-            this.router.navigateByUrl('/');
+            this.handleResponse(response.token);
+          } else {
+            this.msg = true;
           }
         },
         error: (error: HttpErrorResponse) => {
-          console.log(error);
+          this.msg = error.error;
         },
       });
     }
   }
-  handleResponse(response: IUserJwtResponse) {
-    // console.log(response);
-    // this.token.handle(data.access_token);
+  handleResponse(data: string) {
+    localStorage.setItem('JWT_Token', data);
     this.authService.changeAuthStatus(true);
-    this.router.navigateByUrl('/');
+    this.router.navigateByUrl('dashboard');
   }
 }

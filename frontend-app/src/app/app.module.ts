@@ -5,13 +5,28 @@ import { AppRoutingModule } from './routes/app-routing.module';
 import { AppComponent } from './app.component';
 import { BooksComponent } from './components/books/books.component';
 import { BooksDetailsComponent } from './components/books-details/books-details.component';
-import { FormControl } from '@angular/forms';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import {
+  HTTP_INTERCEPTORS,
+  HttpClient,
+  HttpClientModule,
+} from '@angular/common/http';
 import { UserComponent } from './components/user/user.component';
 import { UserSignupComponent } from './components/user-signup/user-signup.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
-
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
+import { TooltipModule } from 'ngx-bootstrap/tooltip';
+import { ModalModule } from 'ngx-bootstrap/modal';
+import { AuthService } from './service/auth.service';
+import { LoginLayoutComponent } from './layouts/login-layout/login-layout.component';
+import { UserLayoutComponent } from './layouts/user-layout/user-layout.component';
+import { NgxBootstrapIconsModule } from 'ngx-bootstrap-icons';
+import { authGuard } from './guards/auth.guard';
+import { JwtInterceptorService } from './service/jwt-interceptor.service';
+import { TokenService } from './service/token.service';
+import { UserService } from './service/user.service';
 @NgModule({
   declarations: [
     AppComponent,
@@ -21,6 +36,8 @@ import { NavbarComponent } from './components/navbar/navbar.component';
     UserComponent,
     UserSignupComponent,
     NavbarComponent,
+    LoginLayoutComponent,
+    UserLayoutComponent,
   ],
   imports: [
     BrowserModule,
@@ -28,8 +45,23 @@ import { NavbarComponent } from './components/navbar/navbar.component';
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
+    BrowserAnimationsModule,
+    NgbModule,
+    BsDropdownModule.forRoot(),
+    TooltipModule.forRoot(),
+    ModalModule.forRoot(),
+    NgxBootstrapIconsModule,
   ],
-  providers: [],
+  providers: [
+    AuthService,
+    UserService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: JwtInterceptorService,
+      multi: true,
+    },
+    TokenService,
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

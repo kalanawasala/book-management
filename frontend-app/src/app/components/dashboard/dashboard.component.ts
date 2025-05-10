@@ -14,7 +14,6 @@ export class DashboardComponent {
   constructor(private bookService: BookService) {
     this.allBook = [];
   }
-
   ngOnInit(): void {
     this.getBooks();
   }

@@ -21,17 +21,17 @@ export class UserSignupComponent {
     confirmPassword: '',
   };
   public error: any = [];
-  public msg: any = null;
+  public msg!: boolean;
   public submitSignup(registrationForm: NgForm) {
     const userValues = this.form;
     if (!(userValues.password === userValues.confirmPassword)) {
       console.log('Password Is Incorrect');
     }
-    return this.userService.signup(userValues).subscribe({
+    return this.userService.createUser(userValues).subscribe({
       // (data) => console.log(data)
       next: (response) => {
         if (response.success && response.token) {
-          this.msg = 'success';
+          this.msg = true;
           registrationForm.resetForm();
         }
       },
